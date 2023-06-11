@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    background-color: #969696;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:antiquewhite;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    font-weight: bolder;
+    text-align: center;
+    color: #000000;
+  }
+  p {
+    color: #000000;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .cta-button {
+    display: inline-table;
+    margin-right: 4px;
+    margin-left: 4px;
+    margin-top: 4px;
+    padding: 10px 24px;
+    background-color: #4cf5de;
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: #4cf5de;
+  }
+  .message {
+    font-style: italic;
+    color: #777777;
+  }

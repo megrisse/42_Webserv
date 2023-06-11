@@ -1,39 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: megrisse <megrisse@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/04 16:44:34 by megrisse          #+#    #+#              #
-#    Updated: 2023/03/04 16:49:36 by megrisse         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = Webserv
+NAME = webServ
 
 CC = c++
 
-HEADER = 
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+OBJ_FILE = OBJ/
+FOBJ = OBJ
 
-SRC = 
+HEADERS = $(addprefix Headers/, Headers.hpp  webServer.hpp Server.hpp RequestClass.hpp parserObjectU.hpp CGI.hpp ResponseClass.hpp)
 
-OBJ = $(SRC:.cpp=.o)
+SRC_FILE = SRC/
+SRC =  webServer.cpp Server.cpp RequestClass.cpp parserObjectU.cpp CGI.cpp ResponseClass.cpp main.cpp mimeTypes.cpp
 
-all : $(NAME)
+OBJS = $(addprefix $(OBJ_FILE),  $(SRC:%.cpp=%.o))
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+all:	$(NAME)
+	@echo "Making complete"
 
-%.o : %.cpp $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME)	: $(FOBJ) $(OBJS) $(HEADERS)
+	$(CC) $(CPPFLAGS) $(OBJS) -o $@
 
-clean :
-	rm -rf *.o
+$(OBJ_FILE)%.o: $(SRC_FILE)%.cpp $(HEADERS)
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
-fclean : clean
+$(FOBJ) :
+	@mkdir $@
+
+clean:
+	rm -rf $(OBJS)
+	rm -rf $(FOBJ)
+
+fclean: clean
 	rm -rf $(NAME)
 
-re : fclean all
+re: fclean all
